@@ -97,13 +97,6 @@ output "workers_asg_names" {
   )
 }
 
-output "workers_user_data" {
-  description = "User data of worker groups"
-  value = concat(
-    data.template_file.userdata.*.rendered,
-    data.template_file.launch_template_userdata.*.rendered,
-  )
-}
 
 output "workers_default_ami_id" {
   description = "ID of the default worker group AMI"
