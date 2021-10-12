@@ -42,3 +42,9 @@ variable "ng_depends_on" {
   type        = any
   default     = null
 }
+
+variable "set_desired_size" {
+  description = "allow desired size to be pinned for the node group"
+  type = bool
+  default = false
+}

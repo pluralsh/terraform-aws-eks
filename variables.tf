@@ -375,3 +375,9 @@ variable "cluster_service_ipv4_cidr" {
   type        = string
   default     = null
 }
+
+variable "set_desired_size" {
+  description = "whether you want to be able to set node group desired size (warning this can play poorly with cluster autoscaler)"
+  type        = bool
+  default     = false
+}

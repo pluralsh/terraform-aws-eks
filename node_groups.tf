@@ -7,6 +7,7 @@ module "node_groups" {
   tags                   = var.tags
   node_groups_defaults   = var.node_groups_defaults
   node_groups            = var.node_groups
+  set_desired_size       = var.set_desired_size
 
   # Hack to ensure ordering of resource creation.
   # This is a homemade `depends_on` https://discuss.hashicorp.com/t/tips-howto-implement-module-depends-on-emulation/2305/2
