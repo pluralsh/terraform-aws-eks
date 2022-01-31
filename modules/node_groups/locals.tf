@@ -30,15 +30,19 @@ locals {
   ) if var.create_eks }
 
   node_groups_temp = flatten([ for k, v in local.node_groups_merged:
-     [ for id, subnet in var.private_subnets:
+     [ for index, subnet in var.private_subnets:
         {"${k}-${subnet.availability_zone}" = merge(
             v,
             {
-              subnets = [id]
+              subnets = [subnet.id]
               min_capacity = ceil(v.min_capacity/length(var.private_subnets))
               max_capacity = ceil(v.max_capacity/length(var.private_subnets))
               desired_capacity = ceil(v.desired_capacity/length(var.private_subnets))
               name = "${v.name}-${subnet.availability_zone}"
+              labels = merge(
+                lookup(v, "labels", {}),
+                {"topology.ebs.csi.aws.com/zone" = "${subnet.availability_zone}"}
+              )
             },
           )
         }
