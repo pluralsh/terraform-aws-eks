@@ -91,6 +91,11 @@ variable "public_subnets" {
   type        = list(string)
 }
 
+variable "worker_private_subnets" {
+  description = "A list of private subnets to place the EKS cluster workers within."
+  type        = any
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources. Tags added to launch configuration or templates override these values for ASG Tags only."
   type        = map(string)

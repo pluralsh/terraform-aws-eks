@@ -8,7 +8,7 @@ module "node_groups" {
   node_groups_defaults   = var.node_groups_defaults
   node_groups            = var.node_groups
   set_desired_size       = var.set_desired_size
-  private_subnets        = var.private_subnets
+  private_subnets        = var.worker_private_subnets
 
   # Hack to ensure ordering of resource creation.
   # This is a homemade `depends_on` https://discuss.hashicorp.com/t/tips-howto-implement-module-depends-on-emulation/2305/2
