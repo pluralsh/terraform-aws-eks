@@ -93,7 +93,7 @@ variable "public_subnets" {
 
 variable "worker_private_subnets" {
   description = "A list of private subnets to place the EKS cluster workers within."
-  type        = any
+  type        = list(any)
 }
 
 variable "tags" {
