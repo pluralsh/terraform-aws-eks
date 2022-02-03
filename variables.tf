@@ -81,9 +81,19 @@ variable "map_users" {
   default = []
 }
 
-variable "subnets" {
-  description = "A list of subnets to place the EKS cluster and workers within."
+variable "private_subnets" {
+  description = "A list of private subnets to place the EKS cluster and workers within."
   type        = list(string)
+}
+
+variable "public_subnets" {
+  description = "A list of private subnets to place the EKS cluster within."
+  type        = list(string)
+}
+
+variable "worker_private_subnets" {
+  description = "A list of private subnets to place the EKS cluster workers within."
+  type        = list(any)
 }
 
 variable "tags" {

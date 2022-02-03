@@ -56,11 +56,7 @@ resource "aws_eks_node_group" "workers" {
     }
   }
 
-  tags = merge(
-    var.tags,
-    lookup(var.node_groups_defaults, "additional_tags", {}),
-    lookup(var.node_groups[each.key], "additional_tags", {}),
-  )
+  tags = each.value["tags"]
 
   lifecycle {
     create_before_destroy = true
