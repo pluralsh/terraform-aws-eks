@@ -1,5 +1,15 @@
 data "aws_caller_identity" "current" {}
 
+# output "aws_auth_roles" {
+#   description = "Roles for use in aws-auth ConfigMap"
+#   value = [
+#     {
+#       worker_role_arn = coalescelist(aws_iam_role.workers[*].arn, [""])[0]
+#       platform        = "linux"
+#     }
+#   ]
+# }
+
 locals {
   auth_launch_template_worker_roles = [
     for index in range(0, var.create_eks ? local.worker_group_launch_template_count : 0) : {
@@ -44,6 +54,12 @@ locals {
       local.auth_worker_roles,
       module.node_groups.aws_auth_roles,
       module.fargate.aws_auth_roles,
+      [
+        {
+          worker_role_arn = coalescelist(aws_iam_role.workers[*].arn, [""])[0]
+          platform        = "linux"
+        }
+      ],
     ) :
     {
       # Work around https://github.com/kubernetes-sigs/aws-iam-authenticator/issues/153
