@@ -28,7 +28,7 @@ output "cluster_version" {
 
 output "cluster_service_ipv4_cidr" {
   description = "the cidr for the services running on the kubernetes cluster"
-  value       = try(aws_eks_cluster.this[0].kubernetes_network_config[0].service_ipv4_cidr)
+  value       = try(aws_eks_cluster.this[0].kubernetes_network_config[0].service_ipv4_cidr, "")
 }
 
 output "cluster_security_group_id" {
