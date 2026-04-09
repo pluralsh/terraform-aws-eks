@@ -282,9 +282,7 @@ resource "aws_launch_template" "workers_launch_template" {
 
   image_id = lookup(
     var.worker_groups_launch_template[count.index],
-    "ami_id",
-    lookup(var.worker_groups_launch_template[count.index], "platform", local.workers_group_defaults["platform"]) == "windows" ? local.default_ami_id_windows : local.default_ami_id_linux,
-  )
+    "ami_id")
   instance_type = lookup(
     var.worker_groups_launch_template[count.index],
     "instance_type",
